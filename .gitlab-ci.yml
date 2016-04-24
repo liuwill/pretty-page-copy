@@ -1,0 +1,10 @@
+image: node:4.2.2
+
+stages:
+  - test
+
+test_async:
+  stage: test
+  script:
+   - npm install
+   - node ./bin/www

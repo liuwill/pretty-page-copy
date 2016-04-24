@@ -1,0 +1,158 @@
+body, textarea, input, button, select {
+    font: 12px/1.14 "Hiragino Sans GB","Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";
+    color: #333;
+    outline: 0;
+}
+body,ul{ margin: 0; padding: 0; }
+li{list-style: none}
+a,a:hover,a:active,a:visited{text-decoration: none}
+
+/*[Start Navi]*/
+.hero-navi{
+    width:100%;
+    height: 78px;
+    background: #fff;
+    padding-bottom: 1px;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+    z-index: 100;;
+}
+.hero-navi .navi-container{
+    margin:0 auto;
+    width: 990px;
+    position: relative;
+}
+
+.hero-navi .navi-container .navi-logo {
+    padding-top: 18px;
+    padding-right:10px;
+}
+.hero-navi .navi-container .navi-logo a{
+    color:#00b389;
+    font-size: 40px;
+}
+.hero-navi .navi-container .navi-menu{
+    font-size: 16px;
+    padding-top:32px;
+}
+.navi-container .navi-menu .menu-item{
+    float: left;;
+}
+.navi-container .navi-menu .menu-item a{
+    color:rgba(0,0,0,.6);
+    padding: 0px 25px;
+}
+.navi-container .navi-menu .menu-item a:hover{color:#1198b4;}
+/*[End Navi]*/
+
+/*[Start Body]*/
+.hero-container .hero-level-block , .hero-container .hero-level-img{
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover ;
+}
+.hero-container .hero-level-block{
+    height: 596px;
+    position: relative;
+    background-color: #f6f6f6;
+}
+.hero-level-block .block-contont{
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.hero-level-block .block-contont .block-box{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+    height: 100%;
+    display: table;
+    vertical-align: middle;
+}
+.hero-level-block .block-contont .block-box .block-col {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+}
+.block-col.desc{color: #444}
+.block-col.img>.img-part{
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 407px;
+    height: 407px;
+}
+.block-col.img>.img-part.img-i1{
+    background-image: url(http://yixin.dl.126.net/images/newimages/bd1_n.png?v=2);
+}
+
+.hero-container .hero-level-img{
+    height: 1050px;
+    background-image: url(/static/images/hero/bg-lg.png);
+}
+.hero-container .hero-top{
+    height: 1050px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size:cover ;
+
+    background-image: url(/static/images/hero/bg-lg.png);
+    background-position: center bottom;
+}
+.hero-top .top-main{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.hero-top .top-footer{
+    width: 100%;
+    height: 180px;
+    background-color: #888;
+    opacity: .2;
+    position:absolute;
+    bottom: -55px;
+    max-height: 180px;
+}
+
+.hero-container .hero-level-img.level-img1{
+    background-image: url(/static/images/hero/bg1-lg.jpg);
+}
+.hero-container .hero-level-img.level-img2{
+    background-image: url(/static/images/hero/bg2-lg.jpg);
+}
+.hero-container .hero-level-img.level-img3{
+    background-image: url(/static/images/hero/bg3-lg.jpg);
+}
+.hero-container .hero-level-img.level-img4{
+    background-image: url(/static/images/hero/bg4-lg.jpg);
+}
+.hero-container .hero-level-img.level-img5{
+    background-image: url(/static/images/hero/bg5-lg.jpg);
+}
+.hero-container .hero-level-img.level-img6{
+    background-image: url(/static/images/hero/bg6-lg.png);
+}
+/*[End Body]*/
+
+.hero-footer{
+    min-height: 340px;
+    background: #333;
+}
+.hero-bottom{
+    height: 80px;
+    background: #fff;
+}
+
+.pull-right{float: right}
+.pull-left{float: left}
+.clear-fix:before,.clear-fix:after{content: " ";display: table;}
+.clear-fix:after{clear:both}

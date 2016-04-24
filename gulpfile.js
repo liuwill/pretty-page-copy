@@ -1,0 +1,86 @@
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var clean = require('gulp-clean');
+var htmlmin = require('gulp-htmlmin');
+var bower = require('gulp-bower');
+var express = require('gulp-express');
+//var Server = require('karma').Server;
+
+/**
+ * Run test once and exit
+ */
+/*gulp.task('test', function (done) {
+    new Server({
+        configFile: __dirname + '/my.conf.js',
+        singleRun: true
+    }, done).start();
+});*/
+
+gulp.task('copy-lib', function(){
+    gulp.src('bower_components/**/**/*.*')
+        .pipe(gulp.dest('public/lib'));
+});
+
+gulp.task('default', function() {
+  // 将你的默认的任务代码放在这
+});
+
+gulp.task('bower', function() {
+    return bower('./bower_components')
+        .pipe(gulp.dest('./build/static/lib/'))
+});
+
+gulp.task('compress', function() {
+  return gulp.src('lib/**/*.js')
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
+    .pipe(gulp.dest('dist'));
+    
+});
+
+gulp.task('minifyHtml', function () {
+    var options = {
+        removeComments: true,//清除HTML注释
+        collapseWhitespace: true,//压缩HTML
+        collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
+        removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
+        removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
+        removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
+        minifyJS: true,//压缩页面JS
+        minifyCSS: true//压缩页面CSS
+    };
+    gulp.src('lib/templates/*.html')
+        .pipe(htmlmin(options))
+        .pipe(gulp.dest('dist/templates'));
+});
+
+gulp.task('clean', function () {
+	return gulp.src(['dist','build','public/lib'], {read: false})
+		.pipe(clean());
+});
+
+gulp.task('express', function () {
+    // Start the server at the beginning of the task
+    express.run(['./bin/www']);
+
+    // Restart the server when file changes
+    gulp.watch(['views/**/*.ejs'], express.notify);
+    //gulp.watch(['app/styles/**/*.scss'], ['styles:scss']);
+    //gulp.watch(['{.tmp,app}/styles/**/*.css'], ['styles:css', server.notify]);
+    //Event object won't pass down to gulp.watch's callback if there's more than one of them.
+    //So the correct way to use server.notify is as following:
+    /*gulp.watch(['{.tmp,app}/styles/!**!/!*.css'], function(event){
+        gulp.run('styles:css');
+        server.notify(event);
+        //pipe support is added for server.notify since v0.1.5,
+        //see https://github.com/gimm/gulp-express#servernotifyevent
+    });*/
+
+    //gulp.watch(['app/scripts/**/*.js'], ['jshint']);
+    //gulp.watch(['app/images/**/*'], server.notify);
+    gulp.watch(['app.js', 'routes/**/*.js'], [express.run]);
+});
+
+
+gulp.task('minifyfile', ['clean','minifyHtml','compress']);
