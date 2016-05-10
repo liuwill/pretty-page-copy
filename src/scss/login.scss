@@ -1,4 +1,5 @@
 $font-stack:    "-apple-system",BlinkMacSystemFont,Roboto,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Source Han Sans","Noto Sans CJK Sc","Microsoft YaHei",sans-serif;
+$font-Futura:Futura, 'Trebuchet MS', Arial, sans-serif;
 $white-color:#fff;
 $color-black:#0e2026;
 $color-light:#f7f9fa;
@@ -58,6 +59,9 @@ a {
   text-decoration: none;
   color: $color-black;
 }
+a:hover{
+  text-decoration: none;
+}
 
 .login-body{
   height: 100%;
@@ -80,14 +84,14 @@ a {
   .logo-img{
     display: block;
     width: 160px;
-    /*height: 64px;*/
+    height: 64px;
     padding: 20px 24px;
     line-height: 1em;
-    text-indent: -9999px;
+    /*text-indent: -9999px;*/
     font-size: 24px;
     font-weight: bold;
-    font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
-    @include clearfix();
+    font-family: $font-Futura;
+    /*@include clearfix();*/
   }
 }
 
@@ -227,4 +231,16 @@ a {
   margin-right: -15px;
 
   @include clearfix();
+}
+
+.btnBlack {
+  color: #fff;
+  background-color: #0e2026;
+  border-color: #0e2026;
+}
+
+.btnBlack.hover, .btnBlack:hover {
+  color: #fff;
+  background-color: #3d5159;
+  border-color: #3d5159;
 }

@@ -56,6 +56,9 @@ a {
   text-decoration: none;
   color: #0e2026; }
 
+a:hover {
+  text-decoration: none; }
+
 .login-body {
   height: 100%;
   zoom: 1; }
@@ -73,18 +76,14 @@ a {
   .login-logo .logo-img {
     display: block;
     width: 160px;
-    /*height: 64px;*/
+    height: 64px;
     padding: 20px 24px;
     line-height: 1em;
-    text-indent: -9999px;
+    /*text-indent: -9999px;*/
     font-size: 24px;
     font-weight: bold;
-    font-family: Futura, 'Trebuchet MS', Arial, sans-serif; }
-    .login-logo .logo-img:before, .login-logo .logo-img:after {
-      content: " ";
-      display: table; }
-    .login-logo .logo-img:after {
-      clear: both; }
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    /*@include clearfix();*/ }
 
 .form-control {
   display: block;
@@ -192,3 +191,13 @@ a {
     display: table; }
   .row:after {
     clear: both; }
+
+.btnBlack {
+  color: #fff;
+  background-color: #0e2026;
+  border-color: #0e2026; }
+
+.btnBlack.hover, .btnBlack:hover {
+  color: #fff;
+  background-color: #3d5159;
+  border-color: #3d5159; }
