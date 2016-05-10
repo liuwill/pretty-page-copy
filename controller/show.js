@@ -12,4 +12,8 @@ router.get('/menu', function(req, res, next) {
     res.render('show/menu', { title: 'Express' });
 });
 
+router.get('/login', function(req, res, next) {
+    res.render('show/login', { title: 'Express' });
+});
+
 module.exports = router;

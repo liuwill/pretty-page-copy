@@ -1,9 +1,13 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var usemin = require('gulp-usemin');
+var sass = require('gulp-sass');
 var clean = require('gulp-clean');
 var htmlmin = require('gulp-htmlmin');
 var bower = require('gulp-bower');
+var cssmin = require('gulp-cssmin');
+var rev = require('gulp-rev');
 var express = require('gulp-express');
 //var Server = require('karma').Server;
 
@@ -19,7 +23,7 @@ var express = require('gulp-express');
 
 gulp.task('copy-lib', function(){
     gulp.src('bower_components/**/**/*.*')
-        .pipe(gulp.dest('public/lib'));
+        .pipe(gulp.dest('build/lib'));
 });
 
 gulp.task('default', function() {
@@ -32,11 +36,33 @@ gulp.task('bower', function() {
 });
 
 gulp.task('compress', function() {
-  return gulp.src('lib/**/*.js')
+  return gulp.src('/src/scripts/**/*.js')
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('.public/scripts/dist'));
     
+});
+
+gulp.task('sass', function () {
+    return gulp.src('./src/scss/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/styles/dist'));
+});
+
+gulp.task('sass-compress', function () {
+    return gulp.src('./src/scss/**/*.scss')
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('./public/styles/dist'));
+});
+
+gulp.task('usemin', function() {
+    return gulp.src('./views/**/*.ejs')
+        .pipe(usemin({
+            css: [cssmin(), rev() ],
+            inlinejs: [ uglify() ],
+        }))
+        .pipe(gulp.dest('build/dist/views'));
 });
 
 gulp.task('minifyHtml', function () {
@@ -50,13 +76,13 @@ gulp.task('minifyHtml', function () {
         minifyJS: true,//压缩页面JS
         minifyCSS: true//压缩页面CSS
     };
-    gulp.src('lib/templates/*.html')
+    gulp.src('views/**/*.ejs')
         .pipe(htmlmin(options))
-        .pipe(gulp.dest('dist/templates'));
+        .pipe(gulp.dest('build/views'));
 });
 
 gulp.task('clean', function () {
-	return gulp.src(['dist','build','public/lib'], {read: false})
+	return gulp.src(['dist','build'], {read: false})
 		.pipe(clean());
 });
 
@@ -65,7 +91,7 @@ gulp.task('express', function () {
     express.run(['./bin/www']);
 
     // Restart the server when file changes
-    gulp.watch(['views/**/*.ejs'], express.notify);
+    //gulp.watch(['views/**/*.ejs'], express.notify);
     //gulp.watch(['app/styles/**/*.scss'], ['styles:scss']);
     //gulp.watch(['{.tmp,app}/styles/**/*.css'], ['styles:css', server.notify]);
     //Event object won't pass down to gulp.watch's callback if there's more than one of them.
@@ -79,8 +105,7 @@ gulp.task('express', function () {
 
     //gulp.watch(['app/scripts/**/*.js'], ['jshint']);
     //gulp.watch(['app/images/**/*'], server.notify);
-    gulp.watch(['app.js', 'routes/**/*.js'], [express.run]);
+    //gulp.watch(['app.js', 'routes/**/*.js'], [express.run]);
 });
-
 
 gulp.task('minifyfile', ['clean','minifyHtml','compress']);

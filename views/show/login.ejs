@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>LiuWill - login page</title>
+    <script src="/static/lib/jquery/dist/jquery.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/static/styles/dist/login.css"/>
+</head>
+<body class="login-body">
+    <div class="login-main">
+        <div class="login-logo">
+            <span class="logo-img">LiuWill</span>
+        </div>
+        <div class="login-wrapper">
+            <div class="login-box">
+                <form id="login_form">
+                    <div class="form-body">
+                        <h4>登 录</h4>
+                        <div class="form-group">
+                            <label class="sr-only" for="username">登录</label>
+                            <input class="form-control" id="username" autofocus="autofocus" type="email" placeholder="请输入邮箱">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="password">Email address</label>
+                            <input class="form-control" id="password" type="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <div class="form-footer clear-fix">
+                        <button type="submit" id="loginBtn" class="btn btnBlack btn-block" disabled="disabled">登录</button>
+                        <a href="https://dashboard.pingxx.com/page/auto/resetPassword" class="retrieve">忘记密码</a>
+                        <a href="https://dashboard.pingxx.com/register" class="reg">注册账户</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="login-footer">
+            <div class="wrapper">
+                <div class="row">
+                    <ul class="pull-left">
+                        <li><a href="">关于我们</a></li>
+                        <li><a href="">相关文档</a></li>
+                        <li><a href="">帮助中心</a></li>
+                        <li><a href="">客服中心</a></li>
+                    </ul>
+
+                    <div class="icp pull-right">
+                        Copyright liuwill.com
+                        <a href="https://pingxx.com" target="_self">© LiuWill</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

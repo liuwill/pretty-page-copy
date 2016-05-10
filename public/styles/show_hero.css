@@ -31,6 +31,7 @@ a,a:hover,a:active,a:visited{text-decoration: none}
 .hero-navi .navi-container .navi-logo a{
     color:#00b389;
     font-size: 40px;
+    font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
 }
 .hero-navi .navi-container .navi-menu{
     font-size: 16px;
