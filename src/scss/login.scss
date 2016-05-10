@@ -167,7 +167,7 @@ a {
 
   ul{
     @media screen and (max-width: $mobile-small) {
-      float: none;
+      float: none !important;
     }
   }
 
@@ -192,7 +192,7 @@ a {
     color: $color-brown;
 
     @media screen and (max-width: $mobile-small) {
-      float:none;
+      float:none !important;
     }
 
     a {

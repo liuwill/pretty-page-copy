@@ -142,7 +142,7 @@ a {
       text-align: center; } }
   @media screen and (max-width: 767px) {
     .login-footer ul {
-      float: none; } }
+      float: none !important; } }
   .login-footer li {
     float: left; }
     @media screen and (max-width: 767px) {
@@ -158,7 +158,7 @@ a {
     color: #a6aeb3; }
     @media screen and (max-width: 767px) {
       .login-footer .icp {
-        float: none; } }
+        float: none !important; } }
     .login-footer .icp a {
       margin-left: 16px;
       color: #a6aeb3; }
