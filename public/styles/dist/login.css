@@ -96,7 +96,13 @@ a:hover {
   background-color: #fff;
   background-image: none;
   border: 2px solid #f7f9fa;
-  border-radius: 0px; }
+  border-radius: 0px;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -moz-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -ms-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -webkit-appearance: none; }
 
 .form-control:focus {
   border-color: #bfbfbf;

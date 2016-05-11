@@ -2,12 +2,15 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var usemin = require('gulp-usemin');
+var useref = require('gulp-useref');
 var sass = require('gulp-sass');
 var clean = require('gulp-clean');
 var htmlmin = require('gulp-htmlmin');
 var bower = require('gulp-bower');
 var cssmin = require('gulp-cssmin');
+var gulpIf = require('gulp-if');
 var rev = require('gulp-rev');
+var minifyCSS = require('gulp-minify-css');
 var express = require('gulp-express');
 //var Server = require('karma').Server;
 
@@ -57,12 +60,32 @@ gulp.task('sass-compress', function () {
 });
 
 gulp.task('usemin', function() {
-    return gulp.src('./views/**/*.ejs')
+    return gulp.src('./src/test/**/*.html')
         .pipe(usemin({
-            css: [cssmin(), rev() ],
+            css: [ rev ],
+        }))
+        .pipe(gulp.dest('build/dist/test'));
+});
+
+gulp.task('usemin-test', function() {
+    return gulp.src('./src/test/test.html')
+        .pipe(usemin({
+            css: [cssmin(),rev()],
+            js: [uglify(), rev()],
             inlinejs: [ uglify() ],
         }))
-        .pipe(gulp.dest('build/dist/views'));
+        //.pipe(rev())
+        .pipe(gulp.dest('build/dist/test/'))
+});
+
+gulp.task('usedef', function () {
+    return gulp.src('./src/test/test.html')
+        .pipe(useref())
+        // Minifies only if it's a CSS file
+        .pipe(gulpIf('*.css', minifyCSS()))
+        // Uglifies only if it's a Javascript file
+        .pipe(gulpIf('*.js', uglify()))
+        .pipe(gulp.dest('build/dist/test/'));
 });
 
 gulp.task('minifyHtml', function () {
